@@ -99,8 +99,9 @@ input, textarea, select { font-family: inherit; }
 
 [id] { scroll-margin-top: calc(var(--header-height) + 16px); }
 
-/* Multi-page visibility */
-.page-section { display: none; }
+/* Multi-page visibility. The html[data-page] prefix keeps later section
+   layout rules from overriding the route-level visibility. */
+html[data-page] .page-section { display: none; }
 html[data-page="home"] .page-home,
 html[data-page="products"] .page-products,
 html[data-page="dealer"] .page-dealer,
