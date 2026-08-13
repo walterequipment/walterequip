@@ -99,6 +99,15 @@ input, textarea, select { font-family: inherit; }
 
 [id] { scroll-margin-top: calc(var(--header-height) + 16px); }
 
+/* Multi-page visibility */
+.page-section { display: none; }
+html[data-page="home"] .page-home,
+html[data-page="products"] .page-products,
+html[data-page="dealer"] .page-dealer,
+html[data-page="about"] .page-about,
+html[data-page="contact"] .page-contact,
+html[data-page="thanks"] .page-thanks { display: block; }
+
 /* Buttons */
 .btn {
     display: inline-flex;
@@ -1048,6 +1057,13 @@ input, textarea, select { font-family: inherit; }
     font-size: 0.9rem;
 }
 
+.form-note {
+    color: var(--color-text-muted);
+    font-size: 0.76rem;
+    line-height: 1.55;
+    text-align: center;
+}
+
 /* ================================================
    13. MARKETING MODULE
    ================================================ */
@@ -1243,6 +1259,42 @@ input, textarea, select { font-family: inherit; }
 .contact {
     padding: var(--space-2xl) 0;
     background-color: var(--color-bg);
+}
+
+.submission-confirmation {
+    min-height: 58vh;
+    padding: var(--space-3xl) 0;
+    background: linear-gradient(135deg, var(--color-bg-alt), var(--color-bg-warm));
+}
+
+.submission-confirmation-inner {
+    display: flex;
+    max-width: 720px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.submission-confirmation-icon {
+    display: grid;
+    width: 72px;
+    height: 72px;
+    margin-bottom: var(--space-lg);
+    place-items: center;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 900;
+    box-shadow: var(--shadow-primary);
+}
+
+.submission-confirmation-actions {
+    display: flex;
+    gap: var(--space-sm);
+    margin-top: var(--space-xl);
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .contact-grid {

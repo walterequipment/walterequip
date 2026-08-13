@@ -66,29 +66,15 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ================================================
-// 3. ACTIVE NAV LINK ON SCROLL
+// 3. ACTIVE NAV LINK FOR THE CURRENT PAGE
 // ================================================
 function setActiveNavLink() {
-    const sections = document.querySelectorAll('section[id]');
-    const scrollY = window.scrollY + 130;
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        const sectionId = section.getAttribute('id');
-
-        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${sectionId}`) {
-                    link.classList.add('active');
-                }
-            });
-        }
+    const currentPage = document.documentElement.dataset.page || 'home';
+    navLinks.forEach(link => {
+        link.classList.toggle('active', link.dataset.navPage === currentPage);
     });
 }
 
-window.addEventListener('scroll', setActiveNavLink, { passive: true });
 setActiveNavLink();
 
 // ================================================
@@ -189,14 +175,13 @@ function validateField(field) {
     return isValid;
 }
 
-function setupFormValidation(formEl, submitBtnId, successId) {
+function setupFormValidation(formEl, submitBtnId) {
     if (!formEl) return;
 
     const submitBtn = document.getElementById(submitBtnId);
-    const formSuccess = document.getElementById(successId);
 
     // Real-time validation
-    const fields = formEl.querySelectorAll('input, select, textarea');
+    const fields = formEl.querySelectorAll('input:not([type="hidden"]), select, textarea');
     fields.forEach(field => {
         field.addEventListener('blur', () => validateField(field));
         field.addEventListener('input', () => {
@@ -213,7 +198,7 @@ function setupFormValidation(formEl, submitBtnId, successId) {
     formEl.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const allFields = formEl.querySelectorAll('input, select, textarea');
+        const allFields = formEl.querySelectorAll('input:not([type="hidden"]), select, textarea');
         let isFormValid = true;
 
         allFields.forEach(field => {
@@ -233,28 +218,35 @@ function setupFormValidation(formEl, submitBtnId, successId) {
         btnLoading.style.display = 'inline-flex';
         submitBtn.disabled = true;
 
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
-
-        // Reset button
-        btnText.style.display = 'inline';
-        btnLoading.style.display = 'none';
-        submitBtn.disabled = false;
-
-        // Show success
-        formSuccess.style.display = 'flex';
-        formEl.reset();
-
-        setTimeout(() => {
-            formSuccess.style.display = 'none';
-        }, 5000);
+        // Continue with the form's configured POST action. FormSubmit emails
+        // the submission and redirects to the site's confirmation page.
+        formEl.submit();
     });
 }
 
-// Initialize all three forms
-setupFormValidation(document.getElementById('inquiryForm'), 'inqSubmitBtn', 'inqFormSuccess');
-setupFormValidation(document.getElementById('applyForm'), 'appSubmitBtn', 'appFormSuccess');
-setupFormValidation(document.getElementById('contactForm'), 'submitBtn', 'formSuccess');
+// Initialize the two public forms
+setupFormValidation(document.getElementById('applyForm'), 'appSubmitBtn');
+setupFormValidation(document.getElementById('contactForm'), 'submitBtn');
+
+// Product inquiry links now open the dedicated contact page and retain the
+// selected product name in the query string.
+document.querySelectorAll('.product-card').forEach(card => {
+    const link = card.querySelector('.product-card-link');
+    const title = card.querySelector('.product-card-title');
+    if (link && title) {
+        link.href = `contact.html?product=${encodeURIComponent(title.textContent.trim())}`;
+    }
+});
+
+const requestedProduct = new URLSearchParams(window.location.search).get('product');
+const contactForm = document.getElementById('contactForm');
+if (requestedProduct && contactForm) {
+    const productReference = document.createElement('input');
+    productReference.type = 'hidden';
+    productReference.name = 'product_reference';
+    productReference.value = requestedProduct;
+    contactForm.prepend(productReference);
+}
 
 // ================================================
 // 7. SMOOTH SCROLL
