@@ -105,10 +105,23 @@ html[data-page] .page-section { display: none; }
 html[data-page="home"] .page-home,
 html[data-page="products"] .page-products,
 html[data-page="mini-excavators"] .page-mini-excavators,
+html[data-page="parts"] .page-parts,
 html[data-page="dealer"] .page-dealer,
 html[data-page="about"] .page-about,
 html[data-page="contact"] .page-contact,
 html[data-page="thanks"] .page-thanks { display: block; }
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
 
 /* Buttons */
 .btn {
@@ -732,6 +745,33 @@ html[data-page="thanks"] .page-thanks { display: block; }
     background-color: var(--color-primary);
     color: #ffffff;
     border-color: var(--color-primary);
+}
+
+.parts-catalog-promo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    margin: calc(-1 * var(--space-md)) 0 var(--space-xl);
+    padding: var(--space-md) var(--space-lg);
+    border: 1px solid #a9cdaa;
+    border-radius: var(--radius-lg);
+    background: #ffffff;
+    box-shadow: var(--shadow-sm);
+}
+
+.parts-catalog-promo div {
+    display: flex;
+    flex-direction: column;
+}
+
+.parts-catalog-promo strong {
+    color: var(--color-primary-dark);
+}
+
+.parts-catalog-promo span {
+    color: var(--color-text-muted);
+    font-size: 0.84rem;
 }
 
 /* Products Grid */
@@ -1512,7 +1552,406 @@ a.contact-info-value:hover { color: var(--color-secondary); }
 .footer-copy { font-size: 0.8rem; color: rgba(255, 255, 255, 0.4); }
 
 /* ================================================
-   18. SCROLL ANIMATIONS
+   18. WE10 / WE15 PARTS CATALOG
+   ================================================ */
+.parts-catalog-page {
+    background: var(--color-bg-alt);
+}
+
+.parts-hero {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(3rem, 7vw, 5.5rem) 0;
+    color: #ffffff;
+    background:
+        radial-gradient(circle at 82% 18%, rgba(251, 192, 45, 0.24), transparent 28%),
+        linear-gradient(135deg, #0b3510 0%, var(--color-primary) 55%, #28712d 100%);
+}
+
+.parts-hero::after {
+    content: '';
+    position: absolute;
+    right: -7rem;
+    bottom: -10rem;
+    width: 25rem;
+    height: 25rem;
+    border: 3rem solid rgba(255, 255, 255, 0.035);
+    border-radius: 50%;
+}
+
+.parts-hero-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(310px, 0.7fr);
+    align-items: center;
+    gap: var(--space-2xl);
+}
+
+.parts-hero .section-tag {
+    color: var(--color-accent);
+}
+
+.parts-hero h1 {
+    max-width: 760px;
+    margin: 0.45rem 0 var(--space-md);
+    font-size: clamp(2.25rem, 5vw, 4.25rem);
+    line-height: 1.04;
+    letter-spacing: -0.045em;
+}
+
+.parts-hero-content > p {
+    max-width: 710px;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 1.05rem;
+}
+
+.parts-hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: var(--space-lg);
+}
+
+.parts-hero-badges li {
+    padding: 0.48rem 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.88);
+    background: rgba(255, 255, 255, 0.08);
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.035em;
+    text-transform: uppercase;
+}
+
+.parts-fitment-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: var(--radius-lg);
+    background: rgba(4, 30, 8, 0.48);
+    box-shadow: 0 20px 55px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+}
+
+.parts-fitment-icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 2.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    color: var(--color-primary-dark);
+    background: var(--color-accent);
+    font-size: 1.15rem;
+    font-weight: 900;
+}
+
+.parts-fitment-card h2 {
+    margin-bottom: 0.7rem;
+    font-size: 1.15rem;
+}
+
+.parts-fitment-card p {
+    margin-top: 0.35rem;
+    color: rgba(255, 255, 255, 0.74);
+    font-size: 0.88rem;
+}
+
+.parts-fitment-card strong {
+    color: #ffffff;
+}
+
+.parts-catalog-content {
+    padding: var(--space-2xl) 0 var(--space-3xl);
+}
+
+.parts-catalog-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.55fr);
+    align-items: end;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-lg);
+}
+
+.parts-catalog-heading h2 {
+    margin-top: 0.35rem;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    line-height: 1.15;
+}
+
+.parts-catalog-heading > p {
+    color: var(--color-text-muted);
+    font-size: 0.86rem;
+}
+
+.parts-tools {
+    position: sticky;
+    top: calc(var(--header-height) + 12px);
+    z-index: 20;
+    margin-bottom: var(--space-md);
+    padding: var(--space-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: var(--shadow-md);
+    backdrop-filter: blur(10px);
+}
+
+.parts-search {
+    position: relative;
+    display: block;
+    margin-bottom: var(--space-sm);
+}
+
+.parts-search-icon {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-52%);
+    color: var(--color-primary);
+    font-size: 1.55rem;
+    font-weight: 900;
+    pointer-events: none;
+}
+
+.parts-search input {
+    width: 100%;
+    min-height: 3.15rem;
+    padding: 0.75rem 1rem 0.75rem 3rem;
+    border: 1px solid #afd0b0;
+    border-radius: var(--radius-md);
+    outline: none;
+    color: var(--color-text);
+    background: #ffffff;
+    font-size: 0.95rem;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.parts-search input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(27, 94, 32, 0.12);
+}
+
+.parts-filter-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+}
+
+.parts-filter {
+    padding: 0.48rem 0.8rem;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    color: var(--color-text-secondary);
+    background: var(--color-bg-alt);
+    font-size: 0.76rem;
+    font-weight: 700;
+    transition: all var(--transition-fast);
+}
+
+.parts-filter:hover,
+.parts-filter:focus-visible {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+.parts-filter.active {
+    border-color: var(--color-primary);
+    color: #ffffff;
+    background: var(--color-primary);
+}
+
+.parts-results-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+    color: var(--color-text-muted);
+    font-size: 0.83rem;
+}
+
+.parts-results-bar p {
+    font-weight: 800;
+}
+
+.parts-results-bar a {
+    color: var(--color-primary);
+    font-weight: 800;
+}
+
+.parts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-md);
+}
+
+.parts-card {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-card);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.parts-card:hover {
+    transform: translateY(-4px);
+    border-color: #a2caa4;
+    box-shadow: var(--shadow-lg);
+}
+
+.parts-card-media {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-bottom: 1px solid #e6efe6;
+    background: #ffffff;
+}
+
+.parts-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.45s ease;
+}
+
+.parts-card:hover .parts-card-media img {
+    transform: scale(1.035);
+}
+
+.parts-card-body {
+    padding: 1.1rem 1.1rem 1.2rem;
+}
+
+.parts-card-category {
+    display: inline-block;
+    margin-bottom: 0.55rem;
+    padding: 0.28rem 0.52rem;
+    border-radius: 999px;
+    color: var(--color-primary);
+    background: var(--color-bg-alt);
+    font-size: 0.66rem;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.parts-card-title {
+    min-height: 2.75rem;
+    font-size: 1.02rem;
+    line-height: 1.32;
+}
+
+.parts-card-number {
+    margin-top: 0.35rem;
+    color: var(--color-primary);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.78rem;
+    font-weight: 800;
+}
+
+.parts-card-description {
+    min-height: 4.2rem;
+    margin: 0.7rem 0;
+    color: var(--color-text-muted);
+    font-size: 0.78rem;
+    line-height: 1.55;
+}
+
+.parts-card-detail {
+    margin-top: 0.22rem;
+    color: var(--color-text-secondary);
+    font-size: 0.74rem;
+}
+
+.parts-card-detail strong {
+    color: var(--color-text);
+}
+
+.parts-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.85rem;
+    color: var(--color-primary);
+    font-size: 0.8rem;
+    font-weight: 900;
+}
+
+.parts-card-link span {
+    transition: transform var(--transition-fast);
+}
+
+.parts-card-link:hover span {
+    transform: translateX(4px);
+}
+
+.parts-empty {
+    padding: var(--space-2xl) var(--space-lg);
+    border: 1px dashed #9fc4a1;
+    border-radius: var(--radius-lg);
+    text-align: center;
+    background: #ffffff;
+}
+
+.parts-empty[hidden] {
+    display: none;
+}
+
+.parts-empty p {
+    margin: 0.5rem auto var(--space-md);
+    color: var(--color-text-muted);
+}
+
+.parts-fitment-note {
+    margin-top: var(--space-lg);
+    padding: var(--space-md) var(--space-lg);
+    border-left: 4px solid var(--color-accent);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    color: #594b16;
+    background: var(--color-bg-warm);
+    font-size: 0.85rem;
+}
+
+.parts-fitment-note strong {
+    color: #332b0c;
+}
+
+.parts-catalog-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-xl);
+    margin-top: var(--space-2xl);
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border-radius: var(--radius-xl);
+    color: #ffffff;
+    background: var(--color-primary-dark);
+    box-shadow: var(--shadow-lg);
+}
+
+.parts-catalog-cta h2 {
+    margin: 0.35rem 0;
+    font-size: clamp(1.55rem, 3vw, 2.15rem);
+}
+
+.parts-catalog-cta p {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.parts-catalog-cta-actions {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 0.65rem;
+}
+
+/* ================================================
+   19. SCROLL ANIMATIONS
    ================================================ */
 .fade-in-up {
     opacity: 0;
@@ -1554,6 +1993,8 @@ a.contact-info-value:hover { color: var(--color-secondary); }
     .dealer-program-grid { gap: var(--space-xl); }
     .dealer-inquiry-grid { gap: var(--space-xl); }
     .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--space-xl) var(--space-2xl); }
+    .parts-hero-inner { gap: var(--space-xl); }
+    .parts-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 768px) {
@@ -1624,6 +2065,7 @@ a.contact-info-value:hover { color: var(--color-secondary); }
     .products-grid { grid-template-columns: 1fr; }
     .category-tabs { gap: 0.5rem; }
     .product-card-outdoor .product-card-img { height: 250px; }
+    .parts-catalog-promo { align-items: flex-start; flex-direction: column; }
 
     /* Dealer Inquiry */
     .dealer-inquiry { padding: var(--space-2xl) 0; }
@@ -1647,6 +2089,17 @@ a.contact-info-value:hover { color: var(--color-secondary); }
     .footer-grid { grid-template-columns: 1fr; gap: var(--space-lg); }
     .footer-desc { max-width: 100%; }
     .footer-bottom { flex-direction: column; align-items: flex-start; }
+
+    /* Parts Catalog */
+    .parts-hero-inner,
+    .parts-catalog-heading { grid-template-columns: 1fr; }
+    .parts-hero-inner { gap: var(--space-lg); }
+    .parts-fitment-card { max-width: 560px; }
+    .parts-tools { position: static; }
+    .parts-grid { grid-template-columns: 1fr; }
+    .parts-card-title,
+    .parts-card-description { min-height: 0; }
+    .parts-catalog-cta { align-items: flex-start; flex-direction: column; }
 }
 
 @media (max-width: 480px) {
@@ -1660,4 +2113,12 @@ a.contact-info-value:hover { color: var(--color-secondary); }
     .onestop-features { flex-direction: column; align-items: center; gap: var(--space-md); }
     .trust-bar-inner { flex-direction: column; }
     .trust-sep { width: 40px; height: 1px; }
+    .parts-hero h1 { font-size: 2rem; }
+    .parts-fitment-card { padding: var(--space-md); }
+    .parts-tools { padding: var(--space-sm); }
+    .parts-filter-list { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 0.25rem; }
+    .parts-filter { flex: 0 0 auto; }
+    .parts-results-bar { align-items: flex-start; flex-direction: column; gap: 0.3rem; }
+    .parts-catalog-cta-actions { width: 100%; flex-direction: column; }
+    .parts-catalog-cta-actions .btn { width: 100%; }
 }

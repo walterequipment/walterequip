@@ -70,7 +70,7 @@ document.addEventListener('keydown', (e) => {
 // ================================================
 function setActiveNavLink() {
     const currentPage = document.documentElement.dataset.page || 'home';
-    const navPage = currentPage === 'mini-excavators' ? 'products' : currentPage;
+    const navPage = ['mini-excavators', 'parts'].includes(currentPage) ? 'products' : currentPage;
     navLinks.forEach(link => {
         link.classList.toggle('active', link.dataset.navPage === navPage);
     });
