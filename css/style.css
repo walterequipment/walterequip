@@ -104,6 +104,7 @@ input, textarea, select { font-family: inherit; }
 html[data-page] .page-section { display: none; }
 html[data-page="home"] .page-home,
 html[data-page="products"] .page-products,
+html[data-page="mini-excavators"] .page-mini-excavators,
 html[data-page="dealer"] .page-dealer,
 html[data-page="about"] .page-about,
 html[data-page="contact"] .page-contact,
@@ -906,6 +907,47 @@ html[data-page="thanks"] .page-thanks { display: block; }
     transition: gap var(--transition);
 }
 .product-card-link:hover { gap: 0.5rem; color: var(--color-primary-light); }
+
+/* Mini excavator product page */
+.mini-excavators-page {
+    padding: var(--space-2xl) 0;
+    background: var(--color-bg-alt);
+}
+
+.mini-excavator-brochure {
+    margin-top: var(--space-xl);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: #ffffff;
+    box-shadow: var(--shadow-lg);
+}
+
+.mini-excavator-brochure-link {
+    display: block;
+    cursor: zoom-in;
+}
+
+.mini-excavator-brochure img {
+    width: 100%;
+    height: auto;
+}
+
+.mini-excavator-brochure figcaption {
+    padding: 0.8rem var(--space-md);
+    color: var(--color-text-secondary);
+    font-size: 0.8rem;
+    text-align: center;
+    border-top: 1px solid var(--color-border);
+}
+
+.mini-excavator-actions {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-sm);
+    margin-top: var(--space-xl);
+    flex-wrap: wrap;
+}
 
 /* ================================================
    11. DEALER INQUIRY (Homepage Form)

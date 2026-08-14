@@ -70,8 +70,9 @@ document.addEventListener('keydown', (e) => {
 // ================================================
 function setActiveNavLink() {
     const currentPage = document.documentElement.dataset.page || 'home';
+    const navPage = currentPage === 'mini-excavators' ? 'products' : currentPage;
     navLinks.forEach(link => {
-        link.classList.toggle('active', link.dataset.navPage === currentPage);
+        link.classList.toggle('active', link.dataset.navPage === navPage);
     });
 }
 
@@ -233,7 +234,7 @@ setupFormValidation(document.getElementById('contactForm'), 'submitBtn');
 document.querySelectorAll('.product-card').forEach(card => {
     const link = card.querySelector('.product-card-link');
     const title = card.querySelector('.product-card-title');
-    if (link && title) {
+    if (link && title && !link.hasAttribute('data-product-page')) {
         link.href = `contact.html?product=${encodeURIComponent(title.textContent.trim())}`;
     }
 });
