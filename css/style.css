@@ -439,6 +439,13 @@ html[data-page="thanks"] .page-thanks { display: block; }
     object-fit: cover;
 }
 
+.hero-parts-exploded {
+    border-radius: 0;
+    box-shadow: none;
+    object-fit: contain;
+    filter: drop-shadow(0 16px 22px rgba(13, 53, 22, 0.24));
+}
+
 .hero-image-placeholder {
     width: 100%;
     max-width: 420px;
